@@ -300,11 +300,12 @@ if ((end_date_obj - start_date_obj).days >= 30) and start_date_obj >= default_st
             
             scaler = StandardScaler()
             X_win_scaled = scaler.fit_transform(X_win)
-            if i == train_window:
+            # if i == train_window:
                 # 检查是否有因子的方差为 0
-                print("各因子标准差:\n", X_win.std()) 
+                # print("各因子标准差:\n", X_win.std()) 
                 # 检查 y 是否有足够的波动
-                print("收益率标准差:", y_win.std())
+                # print("收益率标准差:", y_win.std())
+            
             
             model.fit(X_win_scaled, y_win, sample_weight=weights)
             
@@ -334,12 +335,12 @@ if ((end_date_obj - start_date_obj).days >= 30) and start_date_obj >= default_st
             if idx % 50 == 0:
                 my_bar.progress(idx / total_steps, text=progress_text)
 
-        print("因子预测力诊断 (IC):")
-        print(trainable_df[features].corrwith(trainable_df['Target_5d']))
+        # print("因子预测力诊断 (IC):")
+        # print(trainable_df[features].corrwith(trainable_df['Target_5d']))
         # 在循环最后
-        coeffs = dict(zip(features, model.coef_))
-        print(f"当前系数分配: {coeffs}")
-        model.alpha_        
+        # coeffs = dict(zip(features, model.coef_))
+        # print(f"当前系数分配: {coeffs}")
+        # model.alpha_        
         my_bar.empty()
         
         # 4. 预测最后 5 天与未来 5 天
